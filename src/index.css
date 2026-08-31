@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@layer base {
+  html, body {
+    background-color: #FAF9F7 !important;
+    color: #111827;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}

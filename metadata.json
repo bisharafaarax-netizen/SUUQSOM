@@ -1,0 +1,6 @@
+{
+  "name": "Suuq",
+  "description": "Suuqa Casriga ah ee Soomaaliyeed ee Xoolaha, Dhulka, Guryaha, Gaadiidka iyo Adeegyada.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
