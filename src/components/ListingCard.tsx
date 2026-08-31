@@ -2,7 +2,24 @@ import React from 'react';
 import { Heart, MapPin, CheckCircle, Tag } from 'lucide-react';
 import { Listing } from '../types';
 import { useApp } from '../context/AppContext';
-import { CamelIcon, CattleIcon, GoatIcon, LandIcon, HouseIcon, VehicleIcon } from './CustomIcons';
+import { 
+  CamelIcon, 
+  CowIcon, 
+  GoatIcon, 
+  HorseIcon, 
+  ChickenIcon, 
+  LivestockIcon, 
+  LandFarmIcon, 
+  HouseIcon, 
+  VehicleIcon, 
+  ElectronicsIcon, 
+  ClothingIcon, 
+  FurnitureIcon, 
+  JobsIcon, 
+  ServicesIcon, 
+  FoodIcon, 
+  StoreIcon 
+} from './CustomIcons';
 
 interface ListingCardProps {
   listing: Listing;
@@ -32,13 +49,38 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing }) => {
   const getCategoryIcon = () => {
     if (listing.category === 'xoolo') {
       if (listing.livestockSubCategory === 'geel') return <CamelIcon size={14} />;
-      if (listing.livestockSubCategory === 'lo') return <CattleIcon size={14} />;
-      return <GoatIcon size={14} />;
+      if (listing.livestockSubCategory === 'lo') return <CowIcon size={14} />;
+      if (listing.livestockSubCategory === 'ari') return <GoatIcon size={14} />;
+      if (listing.livestockSubCategory === 'fardo') return <HorseIcon size={14} />;
+      if (listing.livestockSubCategory === 'digaag') return <ChickenIcon size={14} />;
+      return <LivestockIcon size={14} />;
     }
-    if (listing.category === 'dhul') return <LandIcon size={14} />;
+    if (listing.category === 'dhul') return <LandFarmIcon size={14} />;
     if (listing.category === 'guryo') return <HouseIcon size={14} />;
     if (listing.category === 'gaadiid') return <VehicleIcon size={14} />;
+    if (listing.category === 'electronics') return <ElectronicsIcon size={14} />;
+    if (listing.category === 'dharka') return <ClothingIcon size={14} />;
+    if (listing.category === 'alaabta_guriga') return <FurnitureIcon size={14} />;
+    if (listing.category === 'shaqooyin') return <JobsIcon size={14} />;
+    if (listing.category === 'adeegyo') return <ServicesIcon size={14} />;
+    if (listing.category === 'cunto') return <FoodIcon size={14} />;
+    if (listing.category === 'dukaamo') return <StoreIcon size={14} />;
     return <Tag size={14} />;
+  };
+
+  const getSubcategoryLabel = () => {
+    if (listing.livestockSubCategory) {
+      switch (listing.livestockSubCategory) {
+        case 'geel': return t.geel;
+        case 'lo': return t.lo;
+        case 'ari': return t.ari;
+        case 'fardo': return t.fardo;
+        case 'digaag': return t.digaag;
+        case 'kale': return t.livestockOther;
+        default: return t.xoolo;
+      }
+    }
+    return listing.listingType === 'iib' ? t.forSale : listing.listingType === 'kiro' ? t.forRent : t.service;
   };
 
   return (
@@ -76,12 +118,8 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing }) => {
 
         {/* Listing Type / Subcategory Badge */}
         <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 bg-[#111827]/90 backdrop-blur-xs text-white text-[11px] font-semibold px-2.5 py-0.5 rounded-lg shadow-xs">
-          {getCategoryIcon()}
-          <span className="capitalize">
-            {listing.livestockSubCategory 
-              ? (listing.livestockSubCategory === 'geel' ? t.geel : listing.livestockSubCategory === 'lo' ? t.lo : t.ari)
-              : (listing.listingType === 'iib' ? t.forSale : listing.listingType === 'kiro' ? t.forRent : t.service)}
-          </span>
+          <span className="shrink-0">{getCategoryIcon()}</span>
+          <span className="capitalize">{getSubcategoryLabel()}</span>
         </div>
 
         {/* Price Tag Overlay */}

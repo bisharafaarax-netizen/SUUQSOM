@@ -88,15 +88,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return saved ? JSON.parse(saved) : null;
   });
 
-  // Listings - pure empty start for real user ads
+  // Listings - starts clean & empty for real user advertisements
   const [listings, setListings] = useState<Listing[]>(() => {
-    const saved = localStorage.getItem('suuq_v3_listings');
-    return saved ? JSON.parse(saved) : initialListings;
+    const saved = localStorage.getItem('suuqsom_listings');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      } catch (e) {
+        // fallback
+      }
+    }
+    return initialListings;
   });
 
   // Liked Listings
   const [likedListingIds, setLikedListingIds] = useState<string[]>(() => {
-    const saved = localStorage.getItem('suuq_v3_likes');
+    const saved = localStorage.getItem('suuqsom_likes');
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -111,20 +119,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Friends
   const [friends, setFriends] = useState<Friend[]>(() => {
-    const saved = localStorage.getItem('suuq_v3_friends');
+    const saved = localStorage.getItem('suuqsom_friends');
     return saved ? JSON.parse(saved) : initialFriends;
   });
 
   // Chat & Messages
   const [conversations, setConversations] = useState<Conversation[]>(() => {
-    const saved = localStorage.getItem('suuq_v3_conversations');
+    const saved = localStorage.getItem('suuqsom_conversations');
     return saved ? JSON.parse(saved) : initialConversations;
   });
 
   const [activeChatPartner, setActiveChatPartner] = useState<{ id: string; name: string; avatar?: string; phone: string; listingId?: string; listingTitle?: string } | null>(null);
 
   const [messages, setMessages] = useState<Record<string, Message[]>>(() => {
-    const saved = localStorage.getItem('suuq_v3_messages');
+    const saved = localStorage.getItem('suuqsom_messages');
     return saved ? JSON.parse(saved) : {};
   });
 
@@ -164,23 +172,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   }, [currentUser]);
 
   useEffect(() => {
-    localStorage.setItem('suuq_v3_listings', JSON.stringify(listings));
+    localStorage.setItem('suuqsom_listings', JSON.stringify(listings));
   }, [listings]);
 
   useEffect(() => {
-    localStorage.setItem('suuq_v3_likes', JSON.stringify(likedListingIds));
+    localStorage.setItem('suuqsom_likes', JSON.stringify(likedListingIds));
   }, [likedListingIds]);
 
   useEffect(() => {
-    localStorage.setItem('suuq_v3_friends', JSON.stringify(friends));
+    localStorage.setItem('suuqsom_friends', JSON.stringify(friends));
   }, [friends]);
 
   useEffect(() => {
-    localStorage.setItem('suuq_v3_conversations', JSON.stringify(conversations));
+    localStorage.setItem('suuqsom_conversations', JSON.stringify(conversations));
   }, [conversations]);
 
   useEffect(() => {
-    localStorage.setItem('suuq_v3_messages', JSON.stringify(messages));
+    localStorage.setItem('suuqsom_messages', JSON.stringify(messages));
   }, [messages]);
 
   // Call timer effect

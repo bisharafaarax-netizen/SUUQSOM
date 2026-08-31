@@ -1,8 +1,20 @@
 export type Language = 'so' | 'en';
 export type Theme = 'light' | 'dark';
 
-export type MainCategory = 'xoolo' | 'dhul' | 'guryo' | 'gaadiid' | 'adeegyo';
-export type LivestockSubCategory = 'geel' | 'lo' | 'ari';
+export type MainCategory = 
+  | 'xoolo' 
+  | 'dhul' 
+  | 'guryo' 
+  | 'gaadiid' 
+  | 'electronics' 
+  | 'dharka' 
+  | 'alaabta_guriga' 
+  | 'shaqooyin' 
+  | 'adeegyo' 
+  | 'cunto' 
+  | 'dukaamo';
+
+export type LivestockSubCategory = 'geel' | 'lo' | 'ari' | 'fardo' | 'digaag' | 'kale';
 export type ListingType = 'iib' | 'kiro' | 'adeeg';
 
 export interface User {

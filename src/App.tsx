@@ -205,13 +205,17 @@ const MainMarketplaceContent: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-neutral-200/80 bg-[#FAF9F7] py-8 text-center text-xs text-neutral-500">
         <div className="max-w-7xl mx-auto px-4 space-y-2">
-          <div className="flex items-center justify-center gap-6 font-medium text-neutral-700">
-            <span className="font-extrabold text-[#111827] tracking-tight">Suuq<span className="text-[#D94A0B]">plus</span></span>
-            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('xoolo')}>Xoolo</span>
-            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('dhul')}>Dhul</span>
-            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('guryo')}>Guryo</span>
-            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('gaadiid')}>Gaadiid</span>
-            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('adeegyo')}>Adeegyo</span>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-medium text-neutral-700">
+            <span className="font-extrabold text-[#111827] tracking-tight">SUUQ<span className="text-[#D94A0B]">SOM</span></span>
+            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('xoolo')}>{t.xoolo}</span>
+            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('dhul')}>{t.dhul}</span>
+            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('guryo')}>{t.guryo}</span>
+            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('gaadiid')}>{t.gaadiid}</span>
+            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('electronics')}>{t.electronics}</span>
+            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('dharka')}>{t.dharka}</span>
+            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('alaabta_guriga')}>{t.alaabta_guriga}</span>
+            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('shaqooyin')}>{t.shaqooyin}</span>
+            <span className="hover:text-[#D94A0B] transition-colors cursor-pointer" onClick={() => setSelectedCategory('adeegyo')}>{t.adeegyo}</span>
           </div>
           <p className="text-neutral-400">{t.footerCopyright}</p>
         </div>

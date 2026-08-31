@@ -74,37 +74,18 @@ export const SettingsModal: React.FC = () => {
         {/* Settings Body */}
         <div className="p-6 max-h-[78vh] overflow-y-auto space-y-6 bg-white">
           
-          {/* 1. Language Setting */}
-          <div className="space-y-2.5">
-            <label className="block text-xs font-bold text-neutral-700 flex items-center gap-2">
+          {/* 1. Language Info (Pure Somali) */}
+          <div className="p-3.5 bg-[#FAF9F7] rounded-xl border border-neutral-200/90 flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
               <Globe className="w-4 h-4 text-[#D94A0B]" />
-              <span>{t.language}</span>
-            </label>
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={() => setLanguage('so')}
-                className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
-                  language === 'so'
-                    ? 'bg-[#D94A0B] text-white border-[#D94A0B] shadow-xs'
-                    : 'bg-white text-neutral-700 hover:bg-[#FAF9F7] border-neutral-200'
-                }`}
-              >
-                <span>🇸🇴 {t.somali}</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setLanguage('en')}
-                className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
-                  language === 'en'
-                    ? 'bg-[#D94A0B] text-white border-[#D94A0B] shadow-xs'
-                    : 'bg-white text-neutral-700 hover:bg-[#FAF9F7] border-neutral-200'
-                }`}
-              >
-                <span>🇬🇧 {t.english}</span>
-              </button>
+              <div>
+                <p className="text-xs font-bold text-[#111827]">Luqadda Rasmiga ah</p>
+                <p className="text-[11px] text-neutral-500">Af-Soomaali (Suuqa oo dhan)</p>
+              </div>
             </div>
+            <span className="text-xs font-bold bg-[#D94A0B]/10 text-[#D94A0B] border border-[#D94A0B]/20 px-2.5 py-1 rounded-lg">
+              🇸🇴 Soomaali
+            </span>
           </div>
 
           {/* 2. Profile Editor (If logged in) */}

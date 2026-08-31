@@ -25,27 +25,9 @@ export const CallModal: React.FC = () => {
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Optional local camera access if video call is chosen and video is on
+  // Simulated smooth call connection without triggering intrusive browser camera/mic prompts
   useEffect(() => {
-    let stream: MediaStream | null = null;
-    if (callSession.isOpen && callSession.type === 'video' && !callSession.isVideoOff) {
-      navigator.mediaDevices?.getUserMedia({ video: true, audio: true })
-        .then(s => {
-          stream = s;
-          if (videoRef.current) {
-            videoRef.current.srcObject = s;
-          }
-        })
-        .catch(() => {
-          // Fallback silently to simulated video
-        });
-    }
-
-    return () => {
-      if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-      }
-    };
+    // No intrusive hardware prompts triggered
   }, [callSession.isOpen, callSession.type, callSession.isVideoOff]);
 
   if (!callSession.isOpen) return null;

@@ -4,9 +4,6 @@ import {
   Tag, 
   MapPin, 
   DollarSign, 
-  FileText, 
-  Image as ImageIcon, 
-  UploadCloud, 
   CheckCircle2, 
   AlertCircle,
   Phone,
@@ -14,7 +11,24 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { MainCategory, LivestockSubCategory, ListingType } from '../types';
-import { CamelIcon, CattleIcon, GoatIcon, LandIcon, HouseIcon, VehicleIcon, ServicesIcon } from './CustomIcons';
+import { 
+  CamelIcon, 
+  CowIcon, 
+  GoatIcon, 
+  HorseIcon, 
+  ChickenIcon, 
+  LivestockIcon, 
+  LandFarmIcon, 
+  HouseIcon, 
+  VehicleIcon, 
+  ElectronicsIcon, 
+  ClothingIcon, 
+  FurnitureIcon, 
+  JobsIcon, 
+  ServicesIcon, 
+  FoodIcon, 
+  StoreIcon 
+} from './CustomIcons';
 
 export const CreateListingModal: React.FC = () => {
   const { t, activeModal, setActiveModal, addListing, currentUser } = useApp();
@@ -39,7 +53,7 @@ export const CreateListingModal: React.FC = () => {
   // Sample image presets for quick selection
   const imagePresets = [
     { label: 'Geel', url: 'https://images.unsplash.com/photo-1549419131-aa9b02aa9654?auto=format&fit=crop&w=800&q=80' },
-    { label: 'Lo\'', url: 'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=800&q=80' },
+    { label: "Lo'", url: 'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=800&q=80' },
     { label: 'Ari', url: 'https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=800&q=80' },
     { label: 'Baabuur V8', url: 'https://images.unsplash.com/photo-1594502184342-2e12f877aa73?auto=format&fit=crop&w=800&q=80' },
     { label: 'Guri Villa', url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80' },
@@ -74,11 +88,23 @@ export const CreateListingModal: React.FC = () => {
         ? 'https://images.unsplash.com/photo-1549419131-aa9b02aa9654?auto=format&fit=crop&w=800&q=80'
         : livestockSub === 'lo'
         ? 'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=800&q=80'
-        : 'https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=800&q=80',
+        : livestockSub === 'ari'
+        ? 'https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=800&q=80'
+        : livestockSub === 'fardo'
+        ? 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=800&q=80'
+        : livestockSub === 'digaag'
+        ? 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80'
+        : 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=800&q=80',
       guryo: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
       dhul: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80',
       gaadiid: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
-      adeegyo: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80'
+      electronics: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
+      dharka: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=80',
+      alaabta_guriga: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80',
+      shaqooyin: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+      adeegyo: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
+      cunto: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
+      dukaamo: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80'
     };
 
     const finalImage = imageUrl.trim() || defaultImageMap[category] || defaultImageMap.adeegyo;
@@ -94,7 +120,7 @@ export const CreateListingModal: React.FC = () => {
       location: location.trim(),
       images: [finalImage],
       userId: currentUser?.id || 'user-1',
-      sellerName: currentUser?.fullName || 'Iibiye Suuq',
+      sellerName: currentUser?.fullName || 'Iibiye SUUQSOM',
       sellerPhone: phone.trim(),
       sellerAvatar: currentUser?.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
       sellerVerified: true,
@@ -108,6 +134,29 @@ export const CreateListingModal: React.FC = () => {
     }, 1500);
   };
 
+  const allMainCategories: { id: MainCategory; label: string; icon: React.ReactNode }[] = [
+    { id: 'xoolo', label: t.xoolo, icon: <CamelIcon size={16} /> },
+    { id: 'dhul', label: t.dhul, icon: <LandFarmIcon size={16} /> },
+    { id: 'guryo', label: t.guryo, icon: <HouseIcon size={16} /> },
+    { id: 'gaadiid', label: t.gaadiid, icon: <VehicleIcon size={16} /> },
+    { id: 'electronics', label: t.electronics, icon: <ElectronicsIcon size={16} /> },
+    { id: 'dharka', label: t.dharka, icon: <ClothingIcon size={16} /> },
+    { id: 'alaabta_guriga', label: t.alaabta_guriga, icon: <FurnitureIcon size={16} /> },
+    { id: 'shaqooyin', label: t.shaqooyin, icon: <JobsIcon size={16} /> },
+    { id: 'adeegyo', label: t.adeegyo, icon: <ServicesIcon size={16} /> },
+    { id: 'cunto', label: t.cunto, icon: <FoodIcon size={16} /> },
+    { id: 'dukaamo', label: t.dukaamo, icon: <StoreIcon size={16} /> }
+  ];
+
+  const livestockSubs: { id: LivestockSubCategory; label: string; icon: React.ReactNode }[] = [
+    { id: 'geel', label: t.geel, icon: <CamelIcon size={15} /> },
+    { id: 'lo', label: t.lo, icon: <CowIcon size={15} /> },
+    { id: 'ari', label: t.ari, icon: <GoatIcon size={15} /> },
+    { id: 'fardo', label: t.fardo, icon: <HorseIcon size={15} /> },
+    { id: 'digaag', label: t.digaag, icon: <ChickenIcon size={15} /> },
+    { id: 'kale', label: t.livestockOther, icon: <LivestockIcon size={15} /> }
+  ];
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#111827]/50 backdrop-blur-xs overflow-y-auto">
       <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-xl border border-neutral-200/90 overflow-hidden my-4">
@@ -116,7 +165,7 @@ export const CreateListingModal: React.FC = () => {
         <div className="flex items-center justify-between p-5 bg-white border-b border-neutral-200">
           <div>
             <h2 className="text-base font-black text-[#111827]">{t.createPost}</h2>
-            <p className="text-xs text-neutral-500 mt-0.5">Soo geli xayeysiiskaaga si dadku u arkaan</p>
+            <p className="text-xs text-neutral-500 mt-0.5">Soo geli xayeysiiskaaga SUUQSOM si macaamiishu kuula soo xiriiraan</p>
           </div>
           <button
             onClick={() => setActiveModal('none')}
@@ -132,7 +181,7 @@ export const CreateListingModal: React.FC = () => {
             <div className="text-center py-12 space-y-3">
               <CheckCircle2 className="w-12 h-12 text-[#D94A0B] mx-auto" />
               <h3 className="text-lg font-bold text-[#111827]">{t.postSuccess}</h3>
-              <p className="text-xs text-neutral-500">Xayeysiiskaaga wuxuu hadda ka muuqdaa bogga hore ee suuqa.</p>
+              <p className="text-xs text-neutral-500">Xayeysiiskaaga wuxuu hadda ka muuqdaa bogga hore ee SUUQSOM.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -154,7 +203,7 @@ export const CreateListingModal: React.FC = () => {
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Tusaale: Geel Hal ah ama Baabuur Land Cruiser"
+                  placeholder="Tusaale: Awr Geel ah, Boos Dhul ah, ama Toyota Land Cruiser"
                   className="w-full px-3 py-2 bg-[#FAF9F7] text-[#111827] rounded-lg border border-neutral-200 text-xs focus:outline-none focus:ring-1 focus:ring-[#D94A0B] focus:border-[#D94A0B]"
                   required
                 />
@@ -166,54 +215,44 @@ export const CreateListingModal: React.FC = () => {
                   <Layers className="w-3.5 h-3.5 text-[#D94A0B]" />
                   <span>{t.selectCategory}</span>
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-                  {[
-                    { id: 'xoolo', label: t.xoolo, icon: <CamelIcon size={16} /> },
-                    { id: 'dhul', label: t.dhul, icon: <LandIcon size={16} /> },
-                    { id: 'guryo', label: t.guryo, icon: <HouseIcon size={16} /> },
-                    { id: 'gaadiid', label: t.gaadiid, icon: <VehicleIcon size={16} /> },
-                    { id: 'adeegyo', label: t.adeegyo, icon: <ServicesIcon size={16} /> }
-                  ].map((cat) => (
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {allMainCategories.map((cat) => (
                     <button
                       key={cat.id}
                       type="button"
-                      onClick={() => setCategory(cat.id as MainCategory)}
-                      className={`flex flex-col items-center justify-center p-2.5 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${
+                      onClick={() => setCategory(cat.id)}
+                      className={`flex items-center gap-2 p-2.5 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
                         category === cat.id
                           ? 'bg-[#D94A0B] text-white border-[#D94A0B] shadow-xs'
                           : 'bg-white text-neutral-700 hover:bg-[#FAF9F7] border-neutral-200'
                       }`}
                     >
-                      <span className="mb-1">{cat.icon}</span>
-                      <span>{cat.label}</span>
+                      <span className="shrink-0">{cat.icon}</span>
+                      <span className="truncate">{cat.label}</span>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* If Xoolo is selected -> Livestock Subcategories (Geel / Lo' / Ari) */}
+              {/* If Xoolo is selected -> Livestock Subcategories */}
               {category === 'xoolo' && (
                 <div className="p-3.5 bg-[#FAF9F7] rounded-xl border border-neutral-200 space-y-2">
                   <label className="block text-xs font-semibold text-neutral-800 flex items-center gap-1.5">
-                    <span>{t.selectLivestockSubCategory}</span>
+                    <span>{t.selectLivestockSubCategory}:</span>
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {[
-                      { id: 'geel', label: t.geel, icon: <CamelIcon size={16} /> },
-                      { id: 'lo', label: t.lo, icon: <CattleIcon size={16} /> },
-                      { id: 'ari', label: t.ari, icon: <GoatIcon size={16} /> }
-                    ].map((sub) => (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {livestockSubs.map((sub) => (
                       <button
                         key={sub.id}
                         type="button"
-                        onClick={() => setLivestockSub(sub.id as LivestockSubCategory)}
-                        className={`flex items-center justify-center gap-1.5 p-2 rounded-lg border text-xs font-semibold transition-all cursor-pointer ${
+                        onClick={() => setLivestockSub(sub.id)}
+                        className={`flex items-center justify-center gap-1.5 p-2 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
                           livestockSub === sub.id
                             ? 'bg-[#D94A0B] text-white border-[#D94A0B] shadow-xs'
                             : 'bg-white text-neutral-700 hover:bg-[#FAF9F7] border-neutral-200'
                         }`}
                       >
-                        {sub.icon}
+                        <span className="shrink-0">{sub.icon}</span>
                         <span>{sub.label}</span>
                       </button>
                     ))}
@@ -289,6 +328,7 @@ export const CreateListingModal: React.FC = () => {
                     <option value="Baydhabo, Baay">Baydhabo, Baay</option>
                     <option value="Burco, Togdheer">Burco, Togdheer</option>
                     <option value="Borama, Awdal">Borama, Awdal</option>
+                    <option value="Beledweyne, Hiiraan">Beledweyne, Hiiraan</option>
                     <option value="Afgooye, Shabeellada Hoose">Afgooye, Shabeellada Hoose</option>
                     <option value="Jowhar, Shabeellada Dhexe">Jowhar, Shabeellada Dhexe</option>
                     <option value="Galkacyo, Mudug">Galkacyo, Mudug</option>
@@ -298,13 +338,13 @@ export const CreateListingModal: React.FC = () => {
                 <div>
                   <label className="block text-xs font-semibold text-neutral-700 mb-1 flex items-center gap-1.5">
                     <Phone className="w-3.5 h-3.5 text-[#D94A0B]" />
-                    <span>Lambarka lagala soo xiriirayo</span>
+                    <span>{t.phone}</span>
                   </label>
                   <input
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+252 61 XXX XXXX"
+                    placeholder="+252 61 ..."
                     className="w-full px-3 py-2 bg-[#FAF9F7] text-[#111827] rounded-lg border border-neutral-200 text-xs focus:outline-none focus:ring-1 focus:ring-[#D94A0B] focus:border-[#D94A0B]"
                     required
                   />
@@ -313,75 +353,70 @@ export const CreateListingModal: React.FC = () => {
 
               {/* Description */}
               <div>
-                <label className="block text-xs font-semibold text-neutral-700 mb-1 flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-[#D94A0B]" />
-                  <span>{t.descriptionLabel}</span>
+                <label className="block text-xs font-semibold text-neutral-700 mb-1">
+                  {t.descriptionLabel}
                 </label>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={2}
-                  placeholder="Faahfaahi xaaladda alaabta, da'da, tayada, dukumiintiyada..."
+                  placeholder="Sharax xaaladda, faahfaahinta, iyo meesha laguugu imaan karo..."
                   className="w-full px-3 py-2 bg-[#FAF9F7] text-[#111827] rounded-lg border border-neutral-200 text-xs focus:outline-none focus:ring-1 focus:ring-[#D94A0B] focus:border-[#D94A0B]"
                 />
               </div>
 
-              {/* Photo Upload & Presets */}
+              {/* Quick Image Presets */}
               <div>
-                <label className="block text-xs font-semibold text-neutral-700 mb-1 flex items-center gap-1.5">
-                  <ImageIcon className="w-3.5 h-3.5 text-[#D94A0B]" />
-                  <span>{t.uploadImages}</span>
+                <label className="block text-xs font-semibold text-neutral-700 mb-1">
+                  Sawirro Diyaar ah (Dooro mid degdeg ah):
                 </label>
-                
-                <div className="flex items-center gap-3 p-3 border border-neutral-200 rounded-xl bg-[#FAF9F7]">
-                  <img
-                    src={imageUrl || 'https://images.unsplash.com/photo-1549419131-aa9b02aa9654?auto=format&fit=crop&w=200&q=80'}
-                    alt="Preview"
-                    className="w-16 h-16 rounded-lg object-cover border border-neutral-200 shrink-0"
-                  />
-                  <div className="space-y-1">
-                    <label className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#D94A0B] hover:bg-[#C23E08] text-white text-xs font-semibold rounded-lg cursor-pointer transition-colors shadow-xs">
-                      <UploadCloud className="w-3.5 h-3.5" />
-                      <span>Xulo Sawir Qalabkaaga</span>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileUpload}
-                        className="hidden"
-                      />
-                    </label>
-                    <p className="text-[10px] text-neutral-500">
-                      ama dooro sawirrada diyaarka ah ee hoose:
-                    </p>
-                  </div>
-                </div>
-
-                {/* Quick Presets */}
-                <div className="flex flex-wrap gap-1.5 mt-2">
-                  {imagePresets.map((preset, i) => (
+                <div className="flex flex-wrap gap-1.5">
+                  {imagePresets.map((preset, idx) => (
                     <button
-                      key={i}
+                      key={idx}
                       type="button"
                       onClick={() => setImageUrl(preset.url)}
-                      className="px-2 py-1 text-[10px] font-semibold bg-white hover:bg-[#FAF9F7] text-neutral-700 hover:text-[#D94A0B] border border-neutral-200 hover:border-[#D94A0B]/40 rounded-md transition-colors cursor-pointer"
+                      className={`px-2.5 py-1 text-xs rounded-lg border transition-all cursor-pointer font-medium ${
+                        imageUrl === preset.url
+                          ? 'bg-[#D94A0B] text-white border-[#D94A0B]'
+                          : 'bg-[#FAF9F7] text-neutral-700 hover:bg-neutral-100 border-neutral-200'
+                      }`}
                     >
-                      📷 {preset.label}
+                      {preset.label}
                     </button>
                   ))}
                 </div>
               </div>
 
+              {/* Custom Image Upload or URL */}
+              <div>
+                <label className="block text-xs font-semibold text-neutral-700 mb-1">
+                  Ama soo geli sawir (Upload / URL)
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    className="w-full text-xs text-neutral-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#FAF9F7] file:text-neutral-700 hover:file:bg-neutral-100 border border-neutral-200 rounded-lg p-1"
+                  />
+                </div>
+              </div>
+
               {/* Submit Button */}
-              <button
-                id="submit-create-listing-btn"
-                type="submit"
-                className="w-full py-2.5 bg-[#D94A0B] hover:bg-[#C23E08] text-white rounded-lg font-bold text-xs transition-colors cursor-pointer mt-3 shadow-xs"
-              >
-                {t.publishButton}
-              </button>
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  className="w-full py-2.5 bg-[#D94A0B] hover:bg-[#C23E08] text-white font-bold text-xs rounded-xl shadow-xs transition-colors cursor-pointer flex items-center justify-center gap-2"
+                >
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>{t.publishButton}</span>
+                </button>
+              </div>
             </form>
           )}
         </div>
+
       </div>
     </div>
   );

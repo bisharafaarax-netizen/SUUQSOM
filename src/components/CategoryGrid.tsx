@@ -3,40 +3,77 @@ import { useApp } from '../context/AppContext';
 import { MainCategory } from '../types';
 import { 
   CamelIcon, 
-  LandIcon, 
+  LandFarmIcon, 
   HouseIcon, 
   VehicleIcon, 
-  ServicesIcon 
+  ElectronicsIcon,
+  ClothingIcon,
+  FurnitureIcon,
+  JobsIcon,
+  ServicesIcon,
+  FoodIcon,
+  StoreIcon
 } from './CustomIcons';
 
 export const CategoryGrid: React.FC = () => {
   const { t, selectedCategory, setSelectedCategory, setSelectedLivestockSub } = useApp();
 
-  const categories: { id: MainCategory; label: string; icon: React.ReactNode }[] = [
+  const categories: { id: MainCategory; label: string; icon: React.ReactNode; subText?: string }[] = [
     {
       id: 'xoolo',
       label: t.xoolo,
-      icon: <CamelIcon size={28} />
+      icon: <CamelIcon size={26} />,
+      subText: "Geel, Lo', Ari..."
     },
     {
       id: 'dhul',
       label: t.dhul,
-      icon: <LandIcon size={28} />
+      icon: <LandFarmIcon size={26} />
     },
     {
       id: 'guryo',
       label: t.guryo,
-      icon: <HouseIcon size={28} />
+      icon: <HouseIcon size={26} />
     },
     {
       id: 'gaadiid',
       label: t.gaadiid,
-      icon: <VehicleIcon size={28} />
+      icon: <VehicleIcon size={26} />
+    },
+    {
+      id: 'electronics',
+      label: t.electronics,
+      icon: <ElectronicsIcon size={26} />
+    },
+    {
+      id: 'dharka',
+      label: t.dharka,
+      icon: <ClothingIcon size={26} />
+    },
+    {
+      id: 'alaabta_guriga',
+      label: t.alaabta_guriga,
+      icon: <FurnitureIcon size={26} />
+    },
+    {
+      id: 'shaqooyin',
+      label: t.shaqooyin,
+      icon: <JobsIcon size={26} />
     },
     {
       id: 'adeegyo',
       label: t.adeegyo,
-      icon: <ServicesIcon size={28} />
+      icon: <ServicesIcon size={26} />
+    },
+    {
+      id: 'cunto',
+      label: t.cunto,
+      icon: <FoodIcon size={26} />
+    },
+    {
+      id: 'dukaamo',
+      label: t.dukaamo,
+      icon: <StoreIcon size={26} />
     }
   ];
 
@@ -53,7 +90,22 @@ export const CategoryGrid: React.FC = () => {
 
   return (
     <section id="category-grid-section" className="py-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#FAF9F7]">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5 sm:gap-4">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h2 className="text-base font-black text-[#111827] tracking-tight">{t.categories}</h2>
+          <p className="text-xs text-neutral-500 mt-0.5">Dooro qaybta aad rabto inaad ka raadiso ama ka daalacato</p>
+        </div>
+        {selectedCategory !== 'all' && (
+          <button
+            onClick={() => setSelectedCategory('all')}
+            className="text-xs font-bold text-[#D94A0B] hover:underline cursor-pointer"
+          >
+            {t.clearFilters}
+          </button>
+        )}
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
         {categories.map((cat) => {
           const isSelected = selectedCategory === cat.id;
 
@@ -62,14 +114,14 @@ export const CategoryGrid: React.FC = () => {
               key={cat.id}
               id={`cat-card-${cat.id}`}
               onClick={() => handleSelectCategory(cat.id)}
-              className={`group flex flex-col items-center justify-center p-5 sm:p-6 rounded-2xl transition-all cursor-pointer text-center relative border shadow-xs ${
+              className={`group flex flex-col items-center justify-center p-4 rounded-2xl transition-all cursor-pointer text-center relative border shadow-xs ${
                 isSelected
                   ? 'bg-[#D94A0B] text-white border-[#D94A0B] shadow-md shadow-[#D94A0B]/20 scale-[1.02]'
                   : 'bg-white text-[#111827] hover:bg-white border-neutral-200/90 hover:border-[#D94A0B]/40 hover:shadow-sm'
               }`}
             >
               {/* Category Icon */}
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-colors ${
+              <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-2.5 transition-colors ${
                 isSelected 
                   ? 'bg-white/20 text-white' 
                   : 'bg-[#FAF9F7] text-[#111827] group-hover:text-[#D94A0B] group-hover:bg-[#D94A0B]/10'
@@ -80,16 +132,16 @@ export const CategoryGrid: React.FC = () => {
               </div>
 
               {/* Category Label */}
-              <span className={`text-sm font-bold tracking-tight ${
+              <span className={`text-xs font-bold tracking-tight line-clamp-1 ${
                 isSelected ? 'text-white' : 'text-[#111827] group-hover:text-[#D94A0B]'
               }`}>
                 {cat.label}
               </span>
 
               {/* Sub-label for livestock */}
-              {cat.id === 'xoolo' && (
-                <span className={`text-[11px] mt-0.5 font-medium ${isSelected ? 'text-white/80' : 'text-neutral-500'}`}>
-                  Geel, Lo', Ari
+              {cat.subText && (
+                <span className={`text-[10px] mt-0.5 font-medium line-clamp-1 ${isSelected ? 'text-white/80' : 'text-neutral-400'}`}>
+                  {cat.subText}
                 </span>
               )}
             </button>
@@ -99,4 +151,3 @@ export const CategoryGrid: React.FC = () => {
     </section>
   );
 };
-

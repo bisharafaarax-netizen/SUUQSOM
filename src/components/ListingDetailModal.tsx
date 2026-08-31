@@ -18,7 +18,24 @@ import {
   Check
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import { CamelIcon, CattleIcon, GoatIcon, LandIcon, HouseIcon, VehicleIcon } from './CustomIcons';
+import { 
+  CamelIcon, 
+  CowIcon, 
+  GoatIcon, 
+  HorseIcon, 
+  ChickenIcon, 
+  LivestockIcon, 
+  LandFarmIcon, 
+  HouseIcon, 
+  VehicleIcon, 
+  ElectronicsIcon, 
+  ClothingIcon, 
+  FurnitureIcon, 
+  JobsIcon, 
+  ServicesIcon, 
+  FoodIcon, 
+  StoreIcon 
+} from './CustomIcons';
 
 export const ListingDetailModal: React.FC = () => {
   const { 
@@ -57,12 +74,22 @@ export const ListingDetailModal: React.FC = () => {
   const getCategoryIcon = () => {
     if (selectedListing.category === 'xoolo') {
       if (selectedListing.livestockSubCategory === 'geel') return <CamelIcon size={18} />;
-      if (selectedListing.livestockSubCategory === 'lo') return <CattleIcon size={18} />;
-      return <GoatIcon size={18} />;
+      if (selectedListing.livestockSubCategory === 'lo') return <CowIcon size={18} />;
+      if (selectedListing.livestockSubCategory === 'ari') return <GoatIcon size={18} />;
+      if (selectedListing.livestockSubCategory === 'fardo') return <HorseIcon size={18} />;
+      if (selectedListing.livestockSubCategory === 'digaag') return <ChickenIcon size={18} />;
+      return <LivestockIcon size={18} />;
     }
-    if (selectedListing.category === 'dhul') return <LandIcon size={18} />;
+    if (selectedListing.category === 'dhul') return <LandFarmIcon size={18} />;
     if (selectedListing.category === 'guryo') return <HouseIcon size={18} />;
     if (selectedListing.category === 'gaadiid') return <VehicleIcon size={18} />;
+    if (selectedListing.category === 'electronics') return <ElectronicsIcon size={18} />;
+    if (selectedListing.category === 'dharka') return <ClothingIcon size={18} />;
+    if (selectedListing.category === 'alaabta_guriga') return <FurnitureIcon size={18} />;
+    if (selectedListing.category === 'shaqooyin') return <JobsIcon size={18} />;
+    if (selectedListing.category === 'adeegyo') return <ServicesIcon size={18} />;
+    if (selectedListing.category === 'cunto') return <FoodIcon size={18} />;
+    if (selectedListing.category === 'dukaamo') return <StoreIcon size={18} />;
     return <MapPin size={18} />;
   };
 

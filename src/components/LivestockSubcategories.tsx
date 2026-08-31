@@ -1,8 +1,15 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { LivestockSubCategory } from '../types';
-import { CamelIcon, CattleIcon, GoatIcon } from './CustomIcons';
-import { Sparkles } from 'lucide-react';
+import { 
+  CamelIcon, 
+  CowIcon, 
+  GoatIcon, 
+  HorseIcon, 
+  ChickenIcon, 
+  LivestockIcon 
+} from './CustomIcons';
+import { Layers } from 'lucide-react';
 
 export const LivestockSubcategories: React.FC = () => {
   const { 
@@ -22,7 +29,7 @@ export const LivestockSubcategories: React.FC = () => {
     {
       id: 'lo',
       label: t.lo,
-      icon: <CattleIcon size={16} />
+      icon: <CowIcon size={16} />
     },
     {
       id: 'ari',
@@ -30,9 +37,24 @@ export const LivestockSubcategories: React.FC = () => {
       icon: <GoatIcon size={16} />
     },
     {
+      id: 'fardo',
+      label: t.fardo,
+      icon: <HorseIcon size={16} />
+    },
+    {
+      id: 'digaag',
+      label: t.digaag,
+      icon: <ChickenIcon size={16} />
+    },
+    {
+      id: 'kale',
+      label: t.livestockOther,
+      icon: <LivestockIcon size={16} />
+    },
+    {
       id: 'all',
       label: t.allLivestock,
-      icon: <Sparkles size={14} />
+      icon: <Layers size={14} />
     }
   ];
 
@@ -61,13 +83,13 @@ export const LivestockSubcategories: React.FC = () => {
                 key={sub.id}
                 id={`subcat-pill-${sub.id}`}
                 onClick={() => handleSubSelect(sub.id)}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer border shadow-xs ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer border shadow-xs ${
                   isActive
                     ? 'bg-[#D94A0B] text-white border-[#D94A0B] shadow-xs'
                     : 'bg-white text-neutral-700 hover:text-[#D94A0B] hover:border-[#D94A0B]/30 border-neutral-200/90'
                 }`}
               >
-                <span>
+                <span className="shrink-0">
                   {sub.icon}
                 </span>
                 <span>{sub.label}</span>
@@ -80,4 +102,3 @@ export const LivestockSubcategories: React.FC = () => {
     </section>
   );
 };
-

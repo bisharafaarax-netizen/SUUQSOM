@@ -2,12 +2,12 @@ import { Language } from './types';
 
 export const translations = {
   so: {
-    appName: 'Suuq',
-    appNamePlus: 'Suuqplus',
+    appName: 'SUUQSOM',
+    appNamePlus: 'SUUQSOM',
     tagline: 'Suuqa Casriga ah ee Soomaaliyeed',
-    welcomeTitle: 'Ku soo dhawoow Suuqplus',
-    searchPlaceholder: 'Raadi alaab...',
-    searchBarHeader: 'Raadi...',
+    welcomeTitle: 'Ku soo dhawoow SUUQSOM',
+    searchPlaceholder: 'Raadi xoolo, guryo, dhul, baabuur, adeegyo...',
+    searchBarHeader: 'Raadi wax kasta...',
     
     // Nav
     home: 'Bogga Hore',
@@ -23,17 +23,26 @@ export const translations = {
     settings: 'Dejinta',
     
     // Main Categories
-    xoolo: 'Xoolo',
-    dhul: 'Dhul',
+    xoolo: 'Xoolaha',
+    dhul: 'Dhul & Beeraha',
     guryo: 'Guryo',
     gaadiid: 'Gaadiid',
-    adeegyo: 'Adeegyo Kale',
+    electronics: 'Electronics',
+    dharka: 'Dharka',
+    alaabta_guriga: 'Alaabta Guriga',
+    shaqooyin: 'Shaqooyin',
+    adeegyo: 'Adeegyo',
+    cunto: 'Cunto',
+    dukaamo: 'Dukaamo',
     
     // Subcategories
-    livestockTypes: 'Noocyada Xoolaha',
+    livestockTypes: 'Qaybaha Xoolaha',
     geel: 'Geel',
     lo: "Lo'",
-    ari: 'Ari',
+    ari: 'Ari / Riyo',
+    fardo: 'Fardo',
+    digaag: 'Digaag',
+    livestockOther: 'Xoolo kale',
     allLivestock: 'Dhammaan Xoolaha',
     
     // Home Sections

@@ -1,6 +1,6 @@
 import { Listing, Friend, Conversation } from '../types';
 
-// Pure empty listings - ready for real user-posted advertisements
+// Empty initial listings - users will add their own advertisements directly
 export const initialListings: Listing[] = [];
 
 export const initialFriends: Friend[] = [];
